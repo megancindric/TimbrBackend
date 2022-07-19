@@ -7,5 +7,5 @@ from .models import Tree
 class TreeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tree
-        fields = ['id', 'common_name', 'scientific_name', 'fact_1', 'pickup_line']
+        fields = ['id', 'common_name', 'scientific_name', 'fact1', 'pickup_line']
         depth = 1

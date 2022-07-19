@@ -3,6 +3,7 @@ from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 from .models import User
+from trees.models import Tree
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -31,7 +32,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # If added new columns through the User model, add them in the fields
         # list as seen below
         fields = ('username', 'password', 'email',
-                  'first_name', 'last_name',)
+                  'first_name', 'last_name','favorites')
 
     def create(self, validated_data):
 
@@ -50,3 +51,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['favorites']
+        depth = 1
