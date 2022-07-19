@@ -19,7 +19,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
 
-class AddFavorite(APIView):
+class FavoritesView(APIView):
     permission_classes = [IsAuthenticated]
     def patch(self, request, tree_id):
         print(
@@ -28,12 +28,11 @@ class AddFavorite(APIView):
         favorite = get_object_or_404(Tree,pk=tree_id)
         if favorite not in user.favorites.all():        
             user.favorites.add(favorite)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
         else:
-            serializer = UserSerializer(user)
-            return Response(serializer.data, status=status.HTTP_409_CONFLICT)
-
+            user.favorites.remove(favorite)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+ 
 class GetUserInfo(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
