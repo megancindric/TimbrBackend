@@ -15,6 +15,6 @@ class User(AbstractUser):
     # Example (note import of models above that is commented out)
     # this will add a column to the user table
     # is_student = models.BooleanField('student status', default=False)
-    favorites = models.ManyToManyField('trees.Tree', related_name="favorite_trees")
+    favorites = models.ManyToManyField('trees.Tree', related_name="favorite_trees", blank=True)
 
     # TODO: Trim back user model fields, include field for location to match to nearby trees
