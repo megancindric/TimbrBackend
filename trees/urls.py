@@ -6,4 +6,5 @@ from trees import views
 urlpatterns = [
     path('', views.user_trees),
     path('all/', views.get_all_trees),
+    path('test/', views.trees_test),
 ]

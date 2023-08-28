@@ -7,6 +7,9 @@ from .serializers import TreeSerializer
 
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
+@api_view(["GET"])
+def trees_test(request):
+    return Response("Test successful!")
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
